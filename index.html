@@ -3,14 +3,12 @@
 <style>
   .node rect {
     cursor: pointer;
-    fill: #fff;
-    /*fill-opacity: .5;*/
-    /*stroke: #3182bd;*/
+    fill: #fff;    
     stroke-width: 1px;
   }
   
   .node text {
-    font: 10px sans-serif;
+    font: 15px sans-serif;
     pointer-events: none;
   }
   
@@ -52,14 +50,12 @@
         d.y0 = 0;
         var root = d;
         update(d, root, svg, svgI);
-      })
-
-      // update(g2,root = flare);
+      })      
     });
 
     function update(source, root, svg, svgI) {
       var isGetCount = getCount(source);
-      var tree = d3.layout.tree().nodeSize([0, 10]);
+      var tree = d3.layout.tree().nodeSize([0, 0]);
       // Compute the flattened node list. TODO use d3.layout.hierarchy.
       var nodes = tree.nodes(root);
 
@@ -69,10 +65,9 @@
       d3.select(".svg-" + svgI).transition()
         .duration(duration)
         .attr("height", height);
-
-      // Compute the "layout".
+      
       nodes.forEach(function(n, i) {
-        n.x = i * barHeight + (i - 1) * 10;
+        n.x = i * barHeight + (i - 1) * 10;        
       });
 
       // Update the nodes…
@@ -83,7 +78,7 @@
 
       var nodeEnter = node.enter().append("g")
         .attr("class", "node")
-        .attr("transform", function(d) {
+        .attr("transform", function(d) {          
           return "translate(" + source.y0 + "," + source.x0 + ")";
         })
         .style("opacity", 1e-6);
@@ -99,21 +94,6 @@
       }
 
       nodeEnter.append("rect")
-        .attr('class', 'item')
-        .attr("y", -barHeight / 2)
-        .attr("height", barHeight)
-        .attr("width", function(d) {
-          return 30;
-        })
-        .style('stroke', color)
-        .style("fill", color)
-        .on("click", function(d) {
-          var that = this;
-          click(d, root, svg, svgI, that);
-        });
-
-
-      nodeEnter.append("rect")
         .attr("x", 0)
         .attr("y", -barHeight / 2)
         .attr("height", barHeight)
@@ -121,6 +101,7 @@
           return barWidth;
         })
         .style("stroke", color)
+        .style('fill',color)
         .on("click", function(d) {
           var that = this;
           click(d, root, svg, svgI, that);
@@ -128,7 +109,7 @@
 
       nodeEnter.append("text")
         .attr("dy", 3.5)
-        .attr("dx", 55.5)
+        .attr("dx", 10)
         .text(function(d) {
           return d.name;
         });
@@ -184,7 +165,17 @@
     }
 
     function color(d) {
-      return "#68b6f3";
+      switch (d.depth) {
+        case 0:
+          return "#68b6f3";
+          break;
+        case 1:
+          return "#fdc02f";
+          break;
+        case 2:
+          return "#d6510a";
+          break;
+      }
     }
 
     function calc_barWidth(dy, barWidth) {

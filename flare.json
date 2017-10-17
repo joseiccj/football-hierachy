@@ -2,20 +2,20 @@
   {
     "name": "World",
     "children": [{
-        "name": "analytics",
+        "name": "Asia",
         "children": [{
-            "name": "cluster"
+            "name": "East Asia"
           },
           {
-            "name": "graph"
+            "name": "West Asia"
           }
         ]
       },
       {
-        "name": "animate",
+        "name": "Europe",
         "children": [
-          { "name": "Easing", "size": 17010 },
-          { "name": "FunctionSequence", "size": 5842 }
+          { "name": "East Europe"},
+          { "name": "West Europe"}
         ]
       }      
     ]
