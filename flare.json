@@ -1,0 +1,36 @@
+[
+  {
+    "name": "World",
+    "children": [{
+        "name": "analytics",
+        "children": [{
+            "name": "cluster"
+          },
+          {
+            "name": "graph"
+          }
+        ]
+      },
+      {
+        "name": "animate",
+        "children": [
+          { "name": "Easing", "size": 17010 },
+          { "name": "FunctionSequence", "size": 5842 }
+        ]
+      }      
+    ]
+  },
+  {
+    "name": "All Teams",
+    "children": [{
+        "name": "Manchester United"
+      },
+      {
+        "name": "Liverpool"
+      },
+      {
+        "name": "Arsenal"
+      }
+    ]
+  }
+]
